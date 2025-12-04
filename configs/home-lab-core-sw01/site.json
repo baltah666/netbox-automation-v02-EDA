@@ -1,0 +1,83 @@
+{
+    "allow": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS",
+    "api_version": "4.4",
+    "changed": false,
+    "connection": "close",
+    "content": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":13,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/13/\",\"display_url\":\"http://192.168.1.254:8000/dcim/sites/13/\",\"display\":\"Home-Lab\",\"name\":\"Home-Lab\",\"slug\":\"home-lab\",\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"region\":{\"id\":26,\"url\":\"http://192.168.1.254:8000/api/dcim/regions/26/\",\"display\":\"Europ-sweden\",\"name\":\"Europ-sweden\",\"slug\":\"europ-sweden\",\"description\":\"\",\"site_count\":0,\"_depth\":0},\"group\":null,\"tenant\":{\"id\":7,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/7/\",\"display\":\"Home-lab\",\"name\":\"Home-lab\",\"slug\":\"home-lab\",\"description\":\"\"},\"facility\":\"\",\"time_zone\":\"Europe/Stockholm\",\"description\":\"\",\"physical_address\":\"\",\"shipping_address\":\"\",\"latitude\":null,\"longitude\":null,\"comments\":\"\",\"asns\":[],\"tags\":[],\"custom_fields\":{},\"created\":\"2025-11-06T13:31:38.981093Z\",\"last_updated\":\"2025-11-06T13:32:32.438930Z\",\"circuit_count\":0,\"device_count\":7,\"prefix_count\":0,\"rack_count\":1,\"virtualmachine_count\":0,\"vlan_count\":0}]}",
+    "content_language": "en",
+    "content_length": "1005",
+    "content_type": "application/json",
+    "cookies": {},
+    "cookies_string": "",
+    "cross_origin_opener_policy": "same-origin",
+    "date": "Wed, 03 Dec 2025 13:48:02 GMT",
+    "elapsed": 0,
+    "failed": false,
+    "json": {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "asns": [],
+                "circuit_count": 0,
+                "comments": "",
+                "created": "2025-11-06T13:31:38.981093Z",
+                "custom_fields": {},
+                "description": "",
+                "device_count": 7,
+                "display": "Home-Lab",
+                "display_url": "http://192.168.1.254:8000/dcim/sites/13/",
+                "facility": "",
+                "group": null,
+                "id": 13,
+                "last_updated": "2025-11-06T13:32:32.438930Z",
+                "latitude": null,
+                "longitude": null,
+                "name": "Home-Lab",
+                "physical_address": "",
+                "prefix_count": 0,
+                "rack_count": 1,
+                "region": {
+                    "_depth": 0,
+                    "description": "",
+                    "display": "Europ-sweden",
+                    "id": 26,
+                    "name": "Europ-sweden",
+                    "site_count": 0,
+                    "slug": "europ-sweden",
+                    "url": "http://192.168.1.254:8000/api/dcim/regions/26/"
+                },
+                "shipping_address": "",
+                "slug": "home-lab",
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Home-lab",
+                    "id": 7,
+                    "name": "Home-lab",
+                    "slug": "home-lab",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/7/"
+                },
+                "time_zone": "Europe/Stockholm",
+                "url": "http://192.168.1.254:8000/api/dcim/sites/13/",
+                "virtualmachine_count": 0,
+                "vlan_count": 0
+            }
+        ]
+    },
+    "msg": "OK (1005 bytes)",
+    "redirected": false,
+    "referrer_policy": "same-origin",
+    "server": "Unit/1.34.2",
+    "status": 200,
+    "url": "http://192.168.1.254:8000/api/dcim/sites/?name=Home-Lab",
+    "vary": "HX-Request, Accept-Language, Cookie, origin",
+    "x_content_type_options": "nosniff",
+    "x_frame_options": "SAMEORIGIN",
+    "x_request_id": "2d803e62-63d2-4219-82c2-9a538907d921"
+}

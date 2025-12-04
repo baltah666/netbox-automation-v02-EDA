@@ -1,0 +1,303 @@
+{
+    "allow": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS",
+    "api_version": "4.4",
+    "changed": false,
+    "connection": "close",
+    "content": "{\"count\":5,\"next\":null,\"previous\":null,\"results\":[{\"id\":7,\"url\":\"http://192.168.1.254:8000/api/ipam/vlans/7/\",\"display_url\":\"http://192.168.1.254:8000/ipam/vlans/7/\",\"display\":\"G_WIFI (40)\",\"site\":{\"id\":12,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"group\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/ipam/vlan-groups/2/\",\"display\":\"lab_test_env_VLANS\",\"name\":\"lab_test_env_VLANS\",\"slug\":\"lab_test_env_vlans\",\"description\":\"\"},\"vid\":40,\"name\":\"G_WIFI\",\"tenant\":{\"id\":5,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/5/\",\"display\":\"Consulting\",\"name\":\"Consulting\",\"slug\":\"consulting\",\"description\":\"\"},\"status\":{\"value\":\"reserved\",\"label\":\"Reserved\"},\"role\":{\"id\":10,\"url\":\"http://192.168.1.254:8000/api/ipam/roles/10/\",\"display\":\"Guest_WiFi\",\"name\":\"Guest_WiFi\",\"slug\":\"guest_wifi\",\"description\":\"\"},\"description\":\"\",\"qinq_role\":null,\"qinq_svlan\":null,\"comments\":\"\",\"l2vpn_termination\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-16T14:04:15.680332Z\",\"last_updated\":\"2025-09-16T14:04:55.605240Z\",\"prefix_count\":0},{\"id\":8,\"url\":\"http://192.168.1.254:8000/api/ipam/vlans/8/\",\"display_url\":\"http://192.168.1.254:8000/ipam/vlans/8/\",\"display\":\"NETMAN (50)\",\"site\":{\"id\":12,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"group\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/ipam/vlan-groups/2/\",\"display\":\"lab_test_env_VLANS\",\"name\":\"lab_test_env_VLANS\",\"slug\":\"lab_test_env_vlans\",\"description\":\"\"},\"vid\":50,\"name\":\"NETMAN\",\"tenant\":{\"id\":5,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/5/\",\"display\":\"Consulting\",\"name\":\"Consulting\",\"slug\":\"consulting\",\"description\":\"\"},\"status\":{\"value\":\"reserved\",\"label\":\"Reserved\"},\"role\":{\"id\":11,\"url\":\"http://192.168.1.254:8000/api/ipam/roles/11/\",\"display\":\"Network_Management\",\"name\":\"Network_Management\",\"slug\":\"network_management\",\"description\":\"\"},\"description\":\"\",\"qinq_role\":null,\"qinq_svlan\":null,\"comments\":\"\",\"l2vpn_termination\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-16T14:05:43.849993Z\",\"last_updated\":\"2025-09-16T14:05:43.850007Z\",\"prefix_count\":0},{\"id\":9,\"url\":\"http://192.168.1.254:8000/api/ipam/vlans/9/\",\"display_url\":\"http://192.168.1.254:8000/ipam/vlans/9/\",\"display\":\"DATA (300)\",\"site\":{\"id\":12,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"group\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/ipam/vlan-groups/2/\",\"display\":\"lab_test_env_VLANS\",\"name\":\"lab_test_env_VLANS\",\"slug\":\"lab_test_env_vlans\",\"description\":\"\"},\"vid\":300,\"name\":\"DATA\",\"tenant\":{\"id\":5,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/5/\",\"display\":\"Consulting\",\"name\":\"Consulting\",\"slug\":\"consulting\",\"description\":\"\"},\"status\":{\"value\":\"reserved\",\"label\":\"Reserved\"},\"role\":{\"id\":7,\"url\":\"http://192.168.1.254:8000/api/ipam/roles/7/\",\"display\":\"Branch_Data\",\"name\":\"Branch_Data\",\"slug\":\"branch_data\",\"description\":\"\"},\"description\":\"\",\"qinq_role\":null,\"qinq_svlan\":null,\"comments\":\"\",\"l2vpn_termination\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-16T14:07:28.945484Z\",\"last_updated\":\"2025-09-16T14:07:28.945498Z\",\"prefix_count\":0},{\"id\":10,\"url\":\"http://192.168.1.254:8000/api/ipam/vlans/10/\",\"display_url\":\"http://192.168.1.254:8000/ipam/vlans/10/\",\"display\":\"VOICE (301)\",\"site\":{\"id\":12,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"group\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/ipam/vlan-groups/2/\",\"display\":\"lab_test_env_VLANS\",\"name\":\"lab_test_env_VLANS\",\"slug\":\"lab_test_env_vlans\",\"description\":\"\"},\"vid\":301,\"name\":\"VOICE\",\"tenant\":{\"id\":5,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/5/\",\"display\":\"Consulting\",\"name\":\"Consulting\",\"slug\":\"consulting\",\"description\":\"\"},\"status\":{\"value\":\"reserved\",\"label\":\"Reserved\"},\"role\":{\"id\":8,\"url\":\"http://192.168.1.254:8000/api/ipam/roles/8/\",\"display\":\"Branch_Voice\",\"name\":\"Branch_Voice\",\"slug\":\"branch_voice\",\"description\":\"\"},\"description\":\"\",\"qinq_role\":null,\"qinq_svlan\":null,\"comments\":\"\",\"l2vpn_termination\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-16T14:09:12.836315Z\",\"last_updated\":\"2025-09-16T14:09:12.836328Z\",\"prefix_count\":0},{\"id\":11,\"url\":\"http://192.168.1.254:8000/api/ipam/vlans/11/\",\"display_url\":\"http://192.168.1.254:8000/ipam/vlans/11/\",\"display\":\"B_WIFI (302)\",\"site\":{\"id\":12,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"group\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/ipam/vlan-groups/2/\",\"display\":\"lab_test_env_VLANS\",\"name\":\"lab_test_env_VLANS\",\"slug\":\"lab_test_env_vlans\",\"description\":\"\"},\"vid\":302,\"name\":\"B_WIFI\",\"tenant\":{\"id\":5,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/5/\",\"display\":\"Consulting\",\"name\":\"Consulting\",\"slug\":\"consulting\",\"description\":\"\"},\"status\":{\"value\":\"reserved\",\"label\":\"Reserved\"},\"role\":{\"id\":8,\"url\":\"http://192.168.1.254:8000/api/ipam/roles/8/\",\"display\":\"Branch_Voice\",\"name\":\"Branch_Voice\",\"slug\":\"branch_voice\",\"description\":\"\"},\"description\":\"\",\"qinq_role\":null,\"qinq_svlan\":null,\"comments\":\"\",\"l2vpn_termination\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-16T14:09:46.392785Z\",\"last_updated\":\"2025-09-16T14:09:46.392799Z\",\"prefix_count\":0}]}",
+    "content_language": "en",
+    "content_length": "5475",
+    "content_type": "application/json",
+    "cookies": {},
+    "cookies_string": "",
+    "cross_origin_opener_policy": "same-origin",
+    "date": "Wed, 03 Dec 2025 14:10:01 GMT",
+    "elapsed": 0,
+    "failed": false,
+    "json": {
+        "count": 5,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "comments": "",
+                "created": "2025-09-16T14:04:15.680332Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "G_WIFI (40)",
+                "display_url": "http://192.168.1.254:8000/ipam/vlans/7/",
+                "group": {
+                    "description": "",
+                    "display": "lab_test_env_VLANS",
+                    "id": 2,
+                    "name": "lab_test_env_VLANS",
+                    "slug": "lab_test_env_vlans",
+                    "url": "http://192.168.1.254:8000/api/ipam/vlan-groups/2/"
+                },
+                "id": 7,
+                "l2vpn_termination": null,
+                "last_updated": "2025-09-16T14:04:55.605240Z",
+                "name": "G_WIFI",
+                "prefix_count": 0,
+                "qinq_role": null,
+                "qinq_svlan": null,
+                "role": {
+                    "description": "",
+                    "display": "Guest_WiFi",
+                    "id": 10,
+                    "name": "Guest_WiFi",
+                    "slug": "guest_wifi",
+                    "url": "http://192.168.1.254:8000/api/ipam/roles/10/"
+                },
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Reserved",
+                    "value": "reserved"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Consulting",
+                    "id": 5,
+                    "name": "Consulting",
+                    "slug": "consulting",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/5/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/vlans/7/",
+                "vid": 40
+            },
+            {
+                "comments": "",
+                "created": "2025-09-16T14:05:43.849993Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "NETMAN (50)",
+                "display_url": "http://192.168.1.254:8000/ipam/vlans/8/",
+                "group": {
+                    "description": "",
+                    "display": "lab_test_env_VLANS",
+                    "id": 2,
+                    "name": "lab_test_env_VLANS",
+                    "slug": "lab_test_env_vlans",
+                    "url": "http://192.168.1.254:8000/api/ipam/vlan-groups/2/"
+                },
+                "id": 8,
+                "l2vpn_termination": null,
+                "last_updated": "2025-09-16T14:05:43.850007Z",
+                "name": "NETMAN",
+                "prefix_count": 0,
+                "qinq_role": null,
+                "qinq_svlan": null,
+                "role": {
+                    "description": "",
+                    "display": "Network_Management",
+                    "id": 11,
+                    "name": "Network_Management",
+                    "slug": "network_management",
+                    "url": "http://192.168.1.254:8000/api/ipam/roles/11/"
+                },
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Reserved",
+                    "value": "reserved"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Consulting",
+                    "id": 5,
+                    "name": "Consulting",
+                    "slug": "consulting",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/5/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/vlans/8/",
+                "vid": 50
+            },
+            {
+                "comments": "",
+                "created": "2025-09-16T14:07:28.945484Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "DATA (300)",
+                "display_url": "http://192.168.1.254:8000/ipam/vlans/9/",
+                "group": {
+                    "description": "",
+                    "display": "lab_test_env_VLANS",
+                    "id": 2,
+                    "name": "lab_test_env_VLANS",
+                    "slug": "lab_test_env_vlans",
+                    "url": "http://192.168.1.254:8000/api/ipam/vlan-groups/2/"
+                },
+                "id": 9,
+                "l2vpn_termination": null,
+                "last_updated": "2025-09-16T14:07:28.945498Z",
+                "name": "DATA",
+                "prefix_count": 0,
+                "qinq_role": null,
+                "qinq_svlan": null,
+                "role": {
+                    "description": "",
+                    "display": "Branch_Data",
+                    "id": 7,
+                    "name": "Branch_Data",
+                    "slug": "branch_data",
+                    "url": "http://192.168.1.254:8000/api/ipam/roles/7/"
+                },
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Reserved",
+                    "value": "reserved"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Consulting",
+                    "id": 5,
+                    "name": "Consulting",
+                    "slug": "consulting",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/5/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/vlans/9/",
+                "vid": 300
+            },
+            {
+                "comments": "",
+                "created": "2025-09-16T14:09:12.836315Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "VOICE (301)",
+                "display_url": "http://192.168.1.254:8000/ipam/vlans/10/",
+                "group": {
+                    "description": "",
+                    "display": "lab_test_env_VLANS",
+                    "id": 2,
+                    "name": "lab_test_env_VLANS",
+                    "slug": "lab_test_env_vlans",
+                    "url": "http://192.168.1.254:8000/api/ipam/vlan-groups/2/"
+                },
+                "id": 10,
+                "l2vpn_termination": null,
+                "last_updated": "2025-09-16T14:09:12.836328Z",
+                "name": "VOICE",
+                "prefix_count": 0,
+                "qinq_role": null,
+                "qinq_svlan": null,
+                "role": {
+                    "description": "",
+                    "display": "Branch_Voice",
+                    "id": 8,
+                    "name": "Branch_Voice",
+                    "slug": "branch_voice",
+                    "url": "http://192.168.1.254:8000/api/ipam/roles/8/"
+                },
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Reserved",
+                    "value": "reserved"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Consulting",
+                    "id": 5,
+                    "name": "Consulting",
+                    "slug": "consulting",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/5/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/vlans/10/",
+                "vid": 301
+            },
+            {
+                "comments": "",
+                "created": "2025-09-16T14:09:46.392785Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "B_WIFI (302)",
+                "display_url": "http://192.168.1.254:8000/ipam/vlans/11/",
+                "group": {
+                    "description": "",
+                    "display": "lab_test_env_VLANS",
+                    "id": 2,
+                    "name": "lab_test_env_VLANS",
+                    "slug": "lab_test_env_vlans",
+                    "url": "http://192.168.1.254:8000/api/ipam/vlan-groups/2/"
+                },
+                "id": 11,
+                "l2vpn_termination": null,
+                "last_updated": "2025-09-16T14:09:46.392799Z",
+                "name": "B_WIFI",
+                "prefix_count": 0,
+                "qinq_role": null,
+                "qinq_svlan": null,
+                "role": {
+                    "description": "",
+                    "display": "Branch_Voice",
+                    "id": 8,
+                    "name": "Branch_Voice",
+                    "slug": "branch_voice",
+                    "url": "http://192.168.1.254:8000/api/ipam/roles/8/"
+                },
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Reserved",
+                    "value": "reserved"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Consulting",
+                    "id": 5,
+                    "name": "Consulting",
+                    "slug": "consulting",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/5/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/vlans/11/",
+                "vid": 302
+            }
+        ]
+    },
+    "msg": "OK (5475 bytes)",
+    "redirected": false,
+    "referrer_policy": "same-origin",
+    "server": "Unit/1.34.2",
+    "status": 200,
+    "url": "http://192.168.1.254:8000/api/ipam/vlans/?site_id=12",
+    "vary": "HX-Request, Accept-Language, Cookie, origin",
+    "x_content_type_options": "nosniff",
+    "x_frame_options": "SAMEORIGIN",
+    "x_request_id": "4f5f8003-0b32-4654-8b82-82dc6546b171"
+}

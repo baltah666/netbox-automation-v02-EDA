@@ -1,0 +1,247 @@
+{
+    "allow": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS",
+    "api_version": "4.4",
+    "changed": false,
+    "connection": "close",
+    "content": "{\"count\":4,\"next\":null,\"previous\":null,\"results\":[{\"id\":18,\"url\":\"http://192.168.1.254:8000/api/ipam/ip-addresses/18/\",\"display_url\":\"http://192.168.1.254:8000/ipam/ip-addresses/18/\",\"display\":\"192.168.30.12/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.30.12/24\",\"vrf\":null,\"tenant\":{\"id\":6,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/6/\",\"display\":\"Lab_env\",\"name\":\"Lab_env\",\"slug\":\"lab_env\",\"description\":\"\"},\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"role\":null,\"assigned_object_type\":\"dcim.interface\",\"assigned_object_id\":594,\"assigned_object\":{\"id\":594,\"url\":\"http://192.168.1.254:8000/api/dcim/interfaces/594/\",\"display\":\"vlan.300\",\"device\":{\"id\":30,\"url\":\"http://192.168.1.254:8000/api/dcim/devices/30/\",\"display\":\"Test-Env-Access_sw01\",\"name\":\"Test-Env-Access_sw01\",\"description\":\"\"},\"name\":\"vlan.300\",\"description\":\"\",\"cable\":null,\"_occupied\":false},\"nat_inside\":null,\"nat_outside\":[],\"dns_name\":\"\",\"description\":\"\",\"comments\":\"\",\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-28T16:05:45.795235Z\",\"last_updated\":\"2025-09-28T16:05:45.795250Z\"},{\"id\":19,\"url\":\"http://192.168.1.254:8000/api/ipam/ip-addresses/19/\",\"display_url\":\"http://192.168.1.254:8000/ipam/ip-addresses/19/\",\"display\":\"192.168.31.12/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.31.12/24\",\"vrf\":null,\"tenant\":{\"id\":6,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/6/\",\"display\":\"Lab_env\",\"name\":\"Lab_env\",\"slug\":\"lab_env\",\"description\":\"\"},\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"role\":null,\"assigned_object_type\":\"dcim.interface\",\"assigned_object_id\":595,\"assigned_object\":{\"id\":595,\"url\":\"http://192.168.1.254:8000/api/dcim/interfaces/595/\",\"display\":\"vlan.301\",\"device\":{\"id\":30,\"url\":\"http://192.168.1.254:8000/api/dcim/devices/30/\",\"display\":\"Test-Env-Access_sw01\",\"name\":\"Test-Env-Access_sw01\",\"description\":\"\"},\"name\":\"vlan.301\",\"description\":\"\",\"cable\":null,\"_occupied\":false},\"nat_inside\":null,\"nat_outside\":[],\"dns_name\":\"\",\"description\":\"\",\"comments\":\"\",\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-28T16:06:27.477995Z\",\"last_updated\":\"2025-09-28T16:06:27.478011Z\"},{\"id\":20,\"url\":\"http://192.168.1.254:8000/api/ipam/ip-addresses/20/\",\"display_url\":\"http://192.168.1.254:8000/ipam/ip-addresses/20/\",\"display\":\"192.168.32.12/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.32.12/24\",\"vrf\":null,\"tenant\":{\"id\":6,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/6/\",\"display\":\"Lab_env\",\"name\":\"Lab_env\",\"slug\":\"lab_env\",\"description\":\"\"},\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"role\":null,\"assigned_object_type\":\"dcim.interface\",\"assigned_object_id\":596,\"assigned_object\":{\"id\":596,\"url\":\"http://192.168.1.254:8000/api/dcim/interfaces/596/\",\"display\":\"vlan.302\",\"device\":{\"id\":30,\"url\":\"http://192.168.1.254:8000/api/dcim/devices/30/\",\"display\":\"Test-Env-Access_sw01\",\"name\":\"Test-Env-Access_sw01\",\"description\":\"\"},\"name\":\"vlan.302\",\"description\":\"\",\"cable\":null,\"_occupied\":false},\"nat_inside\":null,\"nat_outside\":[],\"dns_name\":\"\",\"description\":\"\",\"comments\":\"\",\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-28T16:07:15.616108Z\",\"last_updated\":\"2025-09-28T16:07:15.616128Z\"},{\"id\":13,\"url\":\"http://192.168.1.254:8000/api/ipam/ip-addresses/13/\",\"display_url\":\"http://192.168.1.254:8000/ipam/ip-addresses/13/\",\"display\":\"192.168.122.119/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.122.119/24\",\"vrf\":null,\"tenant\":{\"id\":6,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/6/\",\"display\":\"Lab_env\",\"name\":\"Lab_env\",\"slug\":\"lab_env\",\"description\":\"\"},\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"role\":null,\"assigned_object_type\":\"dcim.interface\",\"assigned_object_id\":524,\"assigned_object\":{\"id\":524,\"url\":\"http://192.168.1.254:8000/api/dcim/interfaces/524/\",\"display\":\"GigabitEthernet3/3\",\"device\":{\"id\":30,\"url\":\"http://192.168.1.254:8000/api/dcim/devices/30/\",\"display\":\"Test-Env-Access_sw01\",\"name\":\"Test-Env-Access_sw01\",\"description\":\"\"},\"name\":\"GigabitEthernet3/3\",\"description\":\"OOB_sw01  GigabitEthernet0/2\",\"cable\":{\"id\":30,\"url\":\"http://192.168.1.254:8000/api/dcim/cables/30/\",\"display\":\"#30\",\"label\":\"\",\"description\":\"\"},\"_occupied\":true},\"nat_inside\":null,\"nat_outside\":[],\"dns_name\":\"\",\"description\":\"\",\"comments\":\"\",\"tags\":[],\"custom_fields\":{},\"created\":\"2025-09-17T06:35:10.425490Z\",\"last_updated\":\"2025-09-17T06:35:10.425508Z\"}]}",
+    "content_language": "en",
+    "content_length": "4325",
+    "content_type": "application/json",
+    "cookies": {},
+    "cookies_string": "",
+    "cross_origin_opener_policy": "same-origin",
+    "date": "Wed, 03 Dec 2025 19:58:31 GMT",
+    "elapsed": 0,
+    "failed": false,
+    "json": {
+        "count": 4,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "address": "192.168.30.12/24",
+                "assigned_object": {
+                    "_occupied": false,
+                    "cable": null,
+                    "description": "",
+                    "device": {
+                        "description": "",
+                        "display": "Test-Env-Access_sw01",
+                        "id": 30,
+                        "name": "Test-Env-Access_sw01",
+                        "url": "http://192.168.1.254:8000/api/dcim/devices/30/"
+                    },
+                    "display": "vlan.300",
+                    "id": 594,
+                    "name": "vlan.300",
+                    "url": "http://192.168.1.254:8000/api/dcim/interfaces/594/"
+                },
+                "assigned_object_id": 594,
+                "assigned_object_type": "dcim.interface",
+                "comments": "",
+                "created": "2025-09-28T16:05:45.795235Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "192.168.30.12/24",
+                "display_url": "http://192.168.1.254:8000/ipam/ip-addresses/18/",
+                "dns_name": "",
+                "family": {
+                    "label": "IPv4",
+                    "value": 4
+                },
+                "id": 18,
+                "last_updated": "2025-09-28T16:05:45.795250Z",
+                "nat_inside": null,
+                "nat_outside": [],
+                "role": null,
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Lab_env",
+                    "id": 6,
+                    "name": "Lab_env",
+                    "slug": "lab_env",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/6/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/ip-addresses/18/",
+                "vrf": null
+            },
+            {
+                "address": "192.168.31.12/24",
+                "assigned_object": {
+                    "_occupied": false,
+                    "cable": null,
+                    "description": "",
+                    "device": {
+                        "description": "",
+                        "display": "Test-Env-Access_sw01",
+                        "id": 30,
+                        "name": "Test-Env-Access_sw01",
+                        "url": "http://192.168.1.254:8000/api/dcim/devices/30/"
+                    },
+                    "display": "vlan.301",
+                    "id": 595,
+                    "name": "vlan.301",
+                    "url": "http://192.168.1.254:8000/api/dcim/interfaces/595/"
+                },
+                "assigned_object_id": 595,
+                "assigned_object_type": "dcim.interface",
+                "comments": "",
+                "created": "2025-09-28T16:06:27.477995Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "192.168.31.12/24",
+                "display_url": "http://192.168.1.254:8000/ipam/ip-addresses/19/",
+                "dns_name": "",
+                "family": {
+                    "label": "IPv4",
+                    "value": 4
+                },
+                "id": 19,
+                "last_updated": "2025-09-28T16:06:27.478011Z",
+                "nat_inside": null,
+                "nat_outside": [],
+                "role": null,
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Lab_env",
+                    "id": 6,
+                    "name": "Lab_env",
+                    "slug": "lab_env",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/6/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/ip-addresses/19/",
+                "vrf": null
+            },
+            {
+                "address": "192.168.32.12/24",
+                "assigned_object": {
+                    "_occupied": false,
+                    "cable": null,
+                    "description": "",
+                    "device": {
+                        "description": "",
+                        "display": "Test-Env-Access_sw01",
+                        "id": 30,
+                        "name": "Test-Env-Access_sw01",
+                        "url": "http://192.168.1.254:8000/api/dcim/devices/30/"
+                    },
+                    "display": "vlan.302",
+                    "id": 596,
+                    "name": "vlan.302",
+                    "url": "http://192.168.1.254:8000/api/dcim/interfaces/596/"
+                },
+                "assigned_object_id": 596,
+                "assigned_object_type": "dcim.interface",
+                "comments": "",
+                "created": "2025-09-28T16:07:15.616108Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "192.168.32.12/24",
+                "display_url": "http://192.168.1.254:8000/ipam/ip-addresses/20/",
+                "dns_name": "",
+                "family": {
+                    "label": "IPv4",
+                    "value": 4
+                },
+                "id": 20,
+                "last_updated": "2025-09-28T16:07:15.616128Z",
+                "nat_inside": null,
+                "nat_outside": [],
+                "role": null,
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Lab_env",
+                    "id": 6,
+                    "name": "Lab_env",
+                    "slug": "lab_env",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/6/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/ip-addresses/20/",
+                "vrf": null
+            },
+            {
+                "address": "192.168.122.119/24",
+                "assigned_object": {
+                    "_occupied": true,
+                    "cable": {
+                        "description": "",
+                        "display": "#30",
+                        "id": 30,
+                        "label": "",
+                        "url": "http://192.168.1.254:8000/api/dcim/cables/30/"
+                    },
+                    "description": "OOB_sw01  GigabitEthernet0/2",
+                    "device": {
+                        "description": "",
+                        "display": "Test-Env-Access_sw01",
+                        "id": 30,
+                        "name": "Test-Env-Access_sw01",
+                        "url": "http://192.168.1.254:8000/api/dcim/devices/30/"
+                    },
+                    "display": "GigabitEthernet3/3",
+                    "id": 524,
+                    "name": "GigabitEthernet3/3",
+                    "url": "http://192.168.1.254:8000/api/dcim/interfaces/524/"
+                },
+                "assigned_object_id": 524,
+                "assigned_object_type": "dcim.interface",
+                "comments": "",
+                "created": "2025-09-17T06:35:10.425490Z",
+                "custom_fields": {},
+                "description": "",
+                "display": "192.168.122.119/24",
+                "display_url": "http://192.168.1.254:8000/ipam/ip-addresses/13/",
+                "dns_name": "",
+                "family": {
+                    "label": "IPv4",
+                    "value": 4
+                },
+                "id": 13,
+                "last_updated": "2025-09-17T06:35:10.425508Z",
+                "nat_inside": null,
+                "nat_outside": [],
+                "role": null,
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Lab_env",
+                    "id": 6,
+                    "name": "Lab_env",
+                    "slug": "lab_env",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/6/"
+                },
+                "url": "http://192.168.1.254:8000/api/ipam/ip-addresses/13/",
+                "vrf": null
+            }
+        ]
+    },
+    "msg": "OK (4325 bytes)",
+    "redirected": false,
+    "referrer_policy": "same-origin",
+    "server": "Unit/1.34.2",
+    "status": 200,
+    "url": "http://192.168.1.254:8000/api/ipam/ip-addresses/?device=Test-Env-Access_sw01",
+    "vary": "HX-Request, Accept-Language, Cookie, origin",
+    "x_content_type_options": "nosniff",
+    "x_frame_options": "SAMEORIGIN",
+    "x_request_id": "a3536b54-3783-466b-a7c3-9784ef5a5626"
+}

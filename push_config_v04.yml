@@ -1,0 +1,60 @@
+---
+# Version: v04
+- name: Push generated configuration to Cisco IOS devices
+  hosts: all
+  gather_facts: no
+  vars:
+    config_dir: "/var/jenkins_home/workspace/Generate-config-v02/configs"
+
+  tasks:
+
+    - name: Ensure device-specific config file exists
+      ansible.builtin.stat:
+        path: "{{ config_dir }}/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+      register: config_file
+
+    - name: Fail if config file is missing
+      ansible.builtin.fail:
+        msg: "Configuration file for {{ inventory_hostname }} not found!"
+      when: not config_file.stat.exists
+
+    - name: Backup running config before push
+      cisco.ios.ios_config:
+        backup: yes
+        save_when: never
+      register: backup_result
+
+    - name: Show backup file location
+      ansible.builtin.debug:
+        msg: >
+          {% if backup_result.backup_path is defined %}
+          ✅ Backup for {{ inventory_hostname }} stored at {{ backup_result.backup_path }}
+          {% else %}
+          ✅ Backup for {{ inventory_hostname }} stored at N/A
+          {% endif %}
+
+    - name: Load device-specific config if changes exist
+      cisco.ios.ios_config:
+        src: "{{ config_dir }}/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+        backup: yes
+        diff_against: running
+        diff_ignore_lines:
+          - '^Building configuration'
+          - '^Current configuration'
+      register: config_result
+      check_mode: "{{ ansible_check_mode | default(false) }}"
+
+    - name: Report changes
+      ansible.builtin.debug:
+        msg: |
+          {% if config_result.changed %}
+          ⚡ Changes detected on {{ inventory_hostname }}!
+          Commands applied:
+          {% if config_result.diff is defined and config_result.diff %}
+          {{ config_result.diff | to_nice_yaml(indent=2) }}
+          {% else %}
+          (No diff output available)
+          {% endif %}
+          {% else %}
+          ✅ No changes detected on {{ inventory_hostname }}.
+          {% endif %}

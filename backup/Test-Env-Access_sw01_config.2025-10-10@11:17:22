@@ -1,0 +1,325 @@
+Building configuration...
+
+  
+  
+Current configuration : 8110 bytes
+!
+! Last configuration change at 10:05:47 UTC Fri Oct 10 2025 by admin
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone year
+service timestamps log datetime msec localtime show-timezone year
+service password-encryption
+service linenumber
+service compress-config
+service sequence-numbers
+!
+hostname Test-Env-Access_sw01
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging count
+enable secret 5 $1$Yico$PvH1WocFJQvqb0rzQ849.1
+!
+username admin privilege 15 password 7 094F471A1A0A
+aaa new-model
+!
+!
+aaa group server tacacs+ gns3group
+ server name tacacsgui
+!
+aaa group server tacacs+ Techit_Tac_Grp
+ server name snisepx0393
+ server name svisepx1376
+!
+aaa authentication login default group gns3group local
+aaa authentication login Console_AAA local group gns3group
+aaa authentication login Remote_AAA local group gns3group
+aaa authentication enable default group gns3group enable
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group gns3group local if-authenticated 
+aaa authorization exec Remote_AAA local group gns3group if-authenticated 
+aaa authorization exec Console_AAA local group gns3group if-authenticated 
+aaa authorization commands 1 Remote_AAA local group gns3group 
+aaa authorization commands 1 Console_AAA local group gns3group 
+aaa authorization commands 15 Remote_AAA local group gns3group 
+aaa authorization commands 15 Console_AAA local group gns3group 
+aaa accounting exec default start-stop group gns3group
+aaa accounting exec Remote_AAA start-stop group gns3group
+aaa accounting commands 1 default start-stop group gns3group
+aaa accounting commands 1 Remote_AAA start-stop group gns3group
+aaa accounting commands 15 default start-stop group gns3group
+aaa accounting commands 15 Remote_AAA start-stop group gns3group
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+!
+ip vrf mgm
+ rd 65000:1
+ route-target export 65000:1
+ route-target import 65000:1
+!
+!
+!
+no ip bootp server
+ip domain-name tesl.lab.local
+ip name-server 8.8.8.8
+ip name-server 8.8.4.4
+ip cef
+no ipv6 cef
+!
+!
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ description Test-Env-Access_sw02 --> GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ logging event trunk-status
+ media-type rj45
+ negotiation auto
+ spanning-tree guard loop
+!
+interface GigabitEthernet0/2
+ description Test-Env-DS_sw01  ----> GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ logging event trunk-status
+ media-type rj45
+ negotiation auto
+ spanning-tree guard loop
+!
+interface GigabitEthernet0/3
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ description Ubuntu_01---->NIC.Integrated.1-1-1
+ switchport access vlan 300
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ description Ubuntu-03---->NIC.Integrated.1-1-1
+ switchport access vlan 301
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ description only for test
+ switchport access vlan 300
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/2
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/3
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/2
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ description OOB_sw01  GigabitEthernet0/2
+ no switchport
+ ip address 192.168.122.119 255.255.255.0
+ negotiation auto
+ no cdp enable
+ spanning-tree portfast edge
+!
+interface Vlan300
+ ip address 192.168.30.12 255.255.255.0
+!
+interface Vlan301
+ ip address 192.168.31.12 255.255.255.0
+!
+interface Vlan302
+ ip address 192.168.32.12 255.255.255.0
+!
+ip default-gateway 192.168.30.1
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 192.168.30.1
+ip route 192.168.1.0 255.255.255.0 192.168.122.5
+ip route 192.168.40.0 255.255.255.0 192.168.122.41
+ip route 192.168.41.0 255.255.255.0 192.168.122.41
+ip route 192.168.42.0 255.255.255.0 192.168.122.41
+ip tacacs source-interface GigabitEthernet3/3
+ip ssh version 2
+!
+ip access-list standard HomeSnmpReadAcl
+ permit 192.168.122.200
+!
+!
+logging source-interface GigabitEthernet3/3
+logging host 192.168.4.12 transport udp port 1514
+logging host 192.168.4.13 transport udp port 1514
+access-list 10 permit 192.168.122.200
+!
+!
+snmp-server community R34d0nlY RO
+snmp-server location Europ-sweden
+tacacs server tacacsgui
+ address ipv4 192.168.122.102
+ key 7 06565D71191E2D4D5D474A5B55510F7C777915
+tacacs server snisepx0393
+ address ipv4 10.186.31.22
+ key 7 05121F163855571000
+ single-connection
+tacacs server svisepx1376
+ address ipv4 193.111.44.157
+ key 7 071739545611011D0F0A13
+ single-connection
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 30 0
+ authorization exec Console_AAA
+ logging synchronous
+ login authentication Console_AAA
+ transport preferred none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ session-timeout 30 
+ exec-timeout 30 0
+ authorization commands 1 Remote_AAA
+ authorization commands 15 Remote_AAA
+ authorization exec Remote_AAA
+ accounting commands 1 Remote_AAA
+ accounting commands 15 Remote_AAA
+ accounting exec Remote_AAA
+ logging synchronous
+ login authentication Remote_AAA
+ transport preferred none
+ transport input all
+line vty 5 15
+ logging synchronous
+!
+ntp server 192.168.4.40
+ntp server 192.168.4.10
+ntp server 192.168.4.11
+!
+end

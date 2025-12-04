@@ -1,0 +1,238 @@
+{
+    "allow": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS",
+    "api_version": "4.4",
+    "changed": false,
+    "connection": "close",
+    "content": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":40,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/devices/40/\",\"display_url\":\"http://netbox-docker-netbox-1:8080/dcim/devices/40/\",\"display\":\"sw-access-01-member1\",\"name\":\"sw-access-01-member1\",\"device_type\":{\"id\":8,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/device-types/8/\",\"display\":\"Catalyst 9300-24P\",\"manufacturer\":{\"id\":6,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/manufacturers/6/\",\"display\":\"Cisco\",\"name\":\"Cisco\",\"slug\":\"cisco\",\"description\":\"\"},\"model\":\"Catalyst 9300-24P\",\"slug\":\"cisco-c9300-24p\",\"description\":\"\"},\"role\":{\"id\":2,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/device-roles/2/\",\"display\":\"Access Switch\",\"name\":\"Access Switch\",\"slug\":\"access-switch\",\"description\":\"\",\"device_count\":0,\"virtualmachine_count\":0,\"_depth\":0},\"tenant\":{\"id\":6,\"url\":\"http://netbox-docker-netbox-1:8080/api/tenancy/tenants/6/\",\"display\":\"Lab_env\",\"name\":\"Lab_env\",\"slug\":\"lab_env\",\"description\":\"\"},\"platform\":{\"id\":1,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/platforms/1/\",\"display\":\"Cisco IOS\",\"name\":\"Cisco IOS\",\"slug\":\"cisco-ios\",\"description\":\"\",\"device_count\":0,\"virtualmachine_count\":0,\"_depth\":0},\"serial\":\"\",\"asset_tag\":null,\"site\":{\"id\":12,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/sites/12/\",\"display\":\"lab_test_env\",\"name\":\"lab_test_env\",\"slug\":\"lab_test_env\",\"description\":\"\"},\"location\":null,\"rack\":{\"id\":19,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/racks/19/\",\"display\":\"Rack Lab-Test_rack01\",\"name\":\"Rack Lab-Test_rack01\",\"description\":\"\"},\"position\":33.0,\"face\":{\"value\":\"front\",\"label\":\"Front\"},\"latitude\":null,\"longitude\":null,\"parent_device\":null,\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"airflow\":null,\"primary_ip\":{\"id\":30,\"url\":\"http://netbox-docker-netbox-1:8080/api/ipam/ip-addresses/30/\",\"display\":\"192.168.122.200/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.122.200/24\",\"description\":\"\"},\"primary_ip4\":{\"id\":30,\"url\":\"http://netbox-docker-netbox-1:8080/api/ipam/ip-addresses/30/\",\"display\":\"192.168.122.200/24\",\"family\":{\"value\":4,\"label\":\"IPv4\"},\"address\":\"192.168.122.200/24\",\"description\":\"\"},\"primary_ip6\":null,\"oob_ip\":null,\"cluster\":null,\"virtual_chassis\":{\"id\":1,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/virtual-chassis/1/\",\"display\":\"sw-access-01\",\"name\":\"sw-access-01\",\"master\":{\"id\":40,\"url\":\"http://netbox-docker-netbox-1:8080/api/dcim/devices/40/\",\"display_url\":\"http://netbox-docker-netbox-1:8080/dcim/devices/40/\",\"display\":\"sw-access-01-member1\",\"name\":\"sw-access-01-member1\"},\"description\":\"\",\"member_count\":3},\"vc_position\":1,\"vc_priority\":null,\"description\":\"\",\"comments\":\"\",\"config_template\":null,\"config_context\":{\"domain-name\":\"tesl.lab.local\",\"ntp-servers\":[\"192.168.4.10\",\"192.168.4.40\",\"192.168.4.11\"],\"snmp-access\":\"192.168.122.200\",\"name-servers\":[\"8.8.8.8\",\"8.8.4.4\"],\"tacacsgui-ip\":\"192.168.122.102\",\"enable-secret\":\"cisco\",\"static-routes\":[{\"mask\":\"255.255.255.0\",\"network\":\"192.168.1.0\",\"next_hop\":\"192.168.122.5\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.40.0\",\"next_hop\":\"192.168.122.41\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.41.0\",\"next_hop\":\"192.168.122.41\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.42.0\",\"next_hop\":\"192.168.122.41\"}],\"tacacsgui-key\":\"02050D4808095E731F\",\"admin-password\":\"cisco\",\"syslog-servers\":[\"192.168.4.12\",\"192.168.4.13\"],\"tacacs-servers\":[{\"key\":\"yyyyyyyy\",\"name\":\"snisepx0393\",\"port\":49,\"address\":\"10.186.31.22\"},{\"key\":\"xxxxxxxxxx\",\"name\":\"svisepx1376\",\"port\":49,\"address\":\"193.111.44.157\"}],\"default-gateway\":\"192.168.30.1\",\"snmp-ro-community\":\"R34d0nlY\",\"tacacs-source-intf\":\"GigabitEthernet3/3\",\"logging-source-intf\":\"GigabitEthernet3/3\"},\"local_context_data\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-10-24T09:04:37.396540Z\",\"last_updated\":\"2025-10-24T09:19:22.483949Z\",\"console_port_count\":2,\"console_server_port_count\":0,\"power_port_count\":0,\"power_outlet_count\":0,\"interface_count\":27,\"front_port_count\":0,\"rear_port_count\":0,\"device_bay_count\":0,\"module_bay_count\":6,\"inventory_item_count\":0}]}",
+    "content_language": "en",
+    "content_length": "4050",
+    "content_type": "application/json",
+    "cookies": {},
+    "cookies_string": "",
+    "cross_origin_opener_policy": "same-origin",
+    "date": "Wed, 05 Nov 2025 11:54:26 GMT",
+    "elapsed": 0,
+    "failed": false,
+    "json": {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "airflow": null,
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {
+                    "admin-password": "cisco",
+                    "default-gateway": "192.168.30.1",
+                    "domain-name": "tesl.lab.local",
+                    "enable-secret": "cisco",
+                    "logging-source-intf": "GigabitEthernet3/3",
+                    "name-servers": [
+                        "8.8.8.8",
+                        "8.8.4.4"
+                    ],
+                    "ntp-servers": [
+                        "192.168.4.10",
+                        "192.168.4.40",
+                        "192.168.4.11"
+                    ],
+                    "snmp-access": "192.168.122.200",
+                    "snmp-ro-community": "R34d0nlY",
+                    "static-routes": [
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.1.0",
+                            "next_hop": "192.168.122.5"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.40.0",
+                            "next_hop": "192.168.122.41"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.41.0",
+                            "next_hop": "192.168.122.41"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.42.0",
+                            "next_hop": "192.168.122.41"
+                        }
+                    ],
+                    "syslog-servers": [
+                        "192.168.4.12",
+                        "192.168.4.13"
+                    ],
+                    "tacacs-servers": [
+                        {
+                            "address": "10.186.31.22",
+                            "key": "yyyyyyyy",
+                            "name": "snisepx0393",
+                            "port": 49
+                        },
+                        {
+                            "address": "193.111.44.157",
+                            "key": "xxxxxxxxxx",
+                            "name": "svisepx1376",
+                            "port": 49
+                        }
+                    ],
+                    "tacacs-source-intf": "GigabitEthernet3/3",
+                    "tacacsgui-ip": "192.168.122.102",
+                    "tacacsgui-key": "02050D4808095E731F"
+                },
+                "config_template": null,
+                "console_port_count": 2,
+                "console_server_port_count": 0,
+                "created": "2025-10-24T09:04:37.396540Z",
+                "custom_fields": {},
+                "description": "",
+                "device_bay_count": 0,
+                "device_type": {
+                    "description": "",
+                    "display": "Catalyst 9300-24P",
+                    "id": 8,
+                    "manufacturer": {
+                        "description": "",
+                        "display": "Cisco",
+                        "id": 6,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://netbox-docker-netbox-1:8080/api/dcim/manufacturers/6/"
+                    },
+                    "model": "Catalyst 9300-24P",
+                    "slug": "cisco-c9300-24p",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/device-types/8/"
+                },
+                "display": "sw-access-01-member1",
+                "display_url": "http://netbox-docker-netbox-1:8080/dcim/devices/40/",
+                "face": {
+                    "label": "Front",
+                    "value": "front"
+                },
+                "front_port_count": 0,
+                "id": 40,
+                "interface_count": 27,
+                "inventory_item_count": 0,
+                "last_updated": "2025-10-24T09:19:22.483949Z",
+                "latitude": null,
+                "local_context_data": null,
+                "location": null,
+                "longitude": null,
+                "module_bay_count": 6,
+                "name": "sw-access-01-member1",
+                "oob_ip": null,
+                "parent_device": null,
+                "platform": {
+                    "_depth": 0,
+                    "description": "",
+                    "device_count": 0,
+                    "display": "Cisco IOS",
+                    "id": 1,
+                    "name": "Cisco IOS",
+                    "slug": "cisco-ios",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/platforms/1/",
+                    "virtualmachine_count": 0
+                },
+                "position": 33.0,
+                "power_outlet_count": 0,
+                "power_port_count": 0,
+                "primary_ip": {
+                    "address": "192.168.122.200/24",
+                    "description": "",
+                    "display": "192.168.122.200/24",
+                    "family": {
+                        "label": "IPv4",
+                        "value": 4
+                    },
+                    "id": 30,
+                    "url": "http://netbox-docker-netbox-1:8080/api/ipam/ip-addresses/30/"
+                },
+                "primary_ip4": {
+                    "address": "192.168.122.200/24",
+                    "description": "",
+                    "display": "192.168.122.200/24",
+                    "family": {
+                        "label": "IPv4",
+                        "value": 4
+                    },
+                    "id": 30,
+                    "url": "http://netbox-docker-netbox-1:8080/api/ipam/ip-addresses/30/"
+                },
+                "primary_ip6": null,
+                "rack": {
+                    "description": "",
+                    "display": "Rack Lab-Test_rack01",
+                    "id": 19,
+                    "name": "Rack Lab-Test_rack01",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/racks/19/"
+                },
+                "rear_port_count": 0,
+                "role": {
+                    "_depth": 0,
+                    "description": "",
+                    "device_count": 0,
+                    "display": "Access Switch",
+                    "id": 2,
+                    "name": "Access Switch",
+                    "slug": "access-switch",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/device-roles/2/",
+                    "virtualmachine_count": 0
+                },
+                "serial": "",
+                "site": {
+                    "description": "",
+                    "display": "lab_test_env",
+                    "id": 12,
+                    "name": "lab_test_env",
+                    "slug": "lab_test_env",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/sites/12/"
+                },
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Lab_env",
+                    "id": 6,
+                    "name": "Lab_env",
+                    "slug": "lab_env",
+                    "url": "http://netbox-docker-netbox-1:8080/api/tenancy/tenants/6/"
+                },
+                "url": "http://netbox-docker-netbox-1:8080/api/dcim/devices/40/",
+                "vc_position": 1,
+                "vc_priority": null,
+                "virtual_chassis": {
+                    "description": "",
+                    "display": "sw-access-01",
+                    "id": 1,
+                    "master": {
+                        "display": "sw-access-01-member1",
+                        "display_url": "http://netbox-docker-netbox-1:8080/dcim/devices/40/",
+                        "id": 40,
+                        "name": "sw-access-01-member1",
+                        "url": "http://netbox-docker-netbox-1:8080/api/dcim/devices/40/"
+                    },
+                    "member_count": 3,
+                    "name": "sw-access-01",
+                    "url": "http://netbox-docker-netbox-1:8080/api/dcim/virtual-chassis/1/"
+                }
+            }
+        ]
+    },
+    "msg": "OK (4050 bytes)",
+    "redirected": false,
+    "referrer_policy": "same-origin",
+    "server": "Unit/1.34.2",
+    "status": 200,
+    "url": "http://netbox-docker-netbox-1:8080/api/dcim/devices/?name=sw-access-01-member1",
+    "vary": "HX-Request, Accept-Language, Cookie, origin",
+    "x_content_type_options": "nosniff",
+    "x_frame_options": "SAMEORIGIN",
+    "x_request_id": "a67cb6f4-f4bb-40f6-8a3d-81019c44a687"
+}

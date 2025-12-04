@@ -1,0 +1,101 @@
+---
+# ------------------------------
+# NetBox Device Configuration Tasks
+# ------------------------------
+
+# 1️⃣ Get Device Details
+- name: 1 - Get Devices
+  tags: [device]
+  uri:
+    url: "{{ netbox_url }}/api/dcim/devices/?name={{ inventory_hostname }}"
+    method: GET
+    return_content: yes
+    headers:
+      accept: "application/json"
+      Authorization: "Token {{ netbox_token }}"
+  register: device
+
+# 2️⃣ Get Interfaces
+- name: 2 - Get Interfaces
+  tags: [interfaces]
+  uri:
+    url: "{{ netbox_url }}/api/dcim/interfaces/?device={{ inventory_hostname }}&limit=0"
+    method: GET
+    return_content: yes
+    headers:
+      accept: "application/json"
+      Authorization: "Token {{ netbox_token }}"
+  register: interfaces
+
+# 3️⃣ Get IP Addresses
+- name: 3 - Get IP Addresses
+  tags: [ip_addresses]
+  uri:
+    url: "{{ netbox_url }}/api/ipam/ip-addresses/?device={{ inventory_hostname }}"
+    method: GET
+    return_content: yes
+    headers:
+      accept: "application/json"
+      Authorization: "Token {{ netbox_token }}"
+  register: ip_addresses
+
+# 4️⃣ Get Site Details
+- name: 4 - Get Site Details
+  tags: [site]
+  when: device is defined and device.json.results | length > 0
+  uri:
+    url: "{{ netbox_url }}/api/dcim/sites/?name={{ device.json.results[0]['site']['name'] }}"
+    method: GET
+    return_content: yes
+    headers:
+      accept: "application/json"
+      Authorization: "Token {{ netbox_token }}"
+  register: site
+
+# 5️⃣ Get VLANs for Site
+- name: 5 - Get List of VLANs for Site {{ device.json.results[0]['site']['name'] | default('UNKNOWN') }}
+  tags: [vlans]
+  when: site is defined and site.json.results | length > 0
+  uri:
+    url: "{{ netbox_url }}/api/ipam/vlans/?site_id={{ site.json.results[0]['id'] }}"
+    method: GET
+    return_content: yes
+    headers:
+      accept: "application/json"
+      Authorization: "Token {{ netbox_token }}"
+  register: vlans
+
+# 6️⃣ Create Temporary Folder for Configs
+- name: 6 - Create temporary folder for Device Configs
+  tags: [generate_config]
+  file:
+    dest: "{{ configs_directory }}/{{ inventory_hostname }}"
+    state: directory
+
+# 7️⃣ Create Device Configuration Files
+- name: 7 - Create configuration files
+  tags: [generate_config]
+  template:
+    src: "templates/{{ platforms[0] }}.j2"
+    dest: "{{ configs_directory }}/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+
+# 8️⃣ Optional: Create Junos Set Commands
+- name: JUNOS BONUS PLAY!! - Create Junos config using Set Commands
+  tags: [generate_config]
+  when: platforms[0] == 'juniper-junos'
+  template:
+    src: "templates/{{ platforms[0] }}-set.j2"
+    dest: "{{ configs_directory }}/{{ inventory_hostname }}/{{ inventory_hostname }}.set"
+
+# 9️⃣ Save All Registered Variables as JSON
+- name: 9 - Save all registered variables to JSON files
+  tags: [generate_config, save]
+  copy:
+    content: "{{ lookup('ansible.builtin.vars', item) | to_nice_json }}"
+    dest: "{{ configs_directory }}/{{ inventory_hostname }}/{{ item }}.json"
+  loop:
+    - device
+    - interfaces
+    - ip_addresses
+    - site
+    - vlans

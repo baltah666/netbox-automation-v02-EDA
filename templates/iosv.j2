@@ -1,0 +1,217 @@
+# jinja2: lstrip_blocks: True, trim_blocks: True
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone year
+service timestamps log datetime msec localtime show-timezone year
+service password-encryption
+service linenumber
+service compress-config
+service sequence-numbers
+!
+hostname {{ device.json.results[0]['name'] }}
+!
+boot-start-marker
+boot-end-marker
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret {{ device.json.results[0].config_context['enable-secret'] }}
+!
+username admin privilege 15 password 7 {{ device.json.results[0].config_context['admin-password'] }}
+aaa new-model
+!
+aaa group server tacacs+ gns3group
+ server name tacacsgui
+!
+aaa group server tacacs+ Techit_Tac_Grp
+{% for tacacs in device.json.results[0].config_context['tacacs-servers'] %}
+ server name {{ tacacs.name }}
+{% endfor %}
+!
+aaa authentication login default group gns3group local
+aaa authentication login Console_AAA local group gns3group
+aaa authentication login Remote_AAA local group gns3group
+aaa authentication enable default group gns3group enable
+aaa authorization console
+aaa authorization config-commands
+aaa authorization exec default group gns3group local if-authenticated
+aaa authorization exec Remote_AAA local group gns3group if-authenticated
+aaa authorization exec Console_AAA local group gns3group if-authenticated
+aaa authorization commands 1 Remote_AAA local group gns3group
+aaa authorization commands 1 Console_AAA local group gns3group
+aaa authorization commands 15 Remote_AAA local group gns3group
+aaa authorization commands 15 Console_AAA local group gns3group
+aaa accounting exec default start-stop group gns3group
+aaa accounting exec Remote_AAA start-stop group gns3group
+aaa accounting commands 1 default start-stop group gns3group
+aaa accounting commands 1 Remote_AAA start-stop group gns3group
+aaa accounting commands 15 default start-stop group gns3group
+aaa accounting commands 15 Remote_AAA start-stop group gns3group
+!
+aaa session-id common
+!
+no ip bootp server
+ip domain-name {{ device.json.results[0].config_context['domain-name'] }}
+{% for name_server in device.json.results[0].config_context['name-servers'] %}
+ip name-server {{ name_server }}
+{% endfor %}
+ip cef
+no ipv6 cef
+!
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+lldp run
+!
+{% for intf in interfaces.json.results %}
+{% set intf_ips = ip_addresses.json.results | selectattr('assigned_object.name', 'equalto', intf.name) | list %}
+{% set has_ip = intf_ips | length > 0 %}
+{% if intf.name.startswith('vlan.') %}
+interface Vlan{{ intf.name.split('.')[1] }}
+{% else %}
+interface {{ intf.name }}
+{% endif %}
+{% if intf.description %}
+ description {{ intf.description }}
+{% endif %}
+{% if intf.name.startswith('vlan.') %}
+{% for ip in intf_ips %}
+ ip address {{ ip.address.split('/')[0] }} {{ ip.address | ansible.utils.ipaddr('netmask') }}
+{% endfor %}
+{% else %}
+{% if has_ip %}
+ no switchport
+{% for ip in intf_ips %}
+ ip address {{ ip.address.split('/')[0] }} {{ ip.address | ansible.utils.ipaddr('netmask') }}
+{% endfor %}
+ negotiation auto
+ no cdp enable
+ spanning-tree portfast edge
+{% elif intf.mode and intf.mode.value == "access" %}
+ switchport access vlan {{ intf.untagged_vlan.vid }}
+ switchport mode access
+ no shutdown
+ media-type rj45
+ negotiation auto
+{% elif intf.mode and intf.mode.value in ["tagged", "tagged-all"] %}
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ logging event trunk-status
+ media-type rj45
+ negotiation auto
+ spanning-tree guard loop
+{% else %}
+ shutdown
+ default interface {{ intf.name }}
+{% endif %}
+{% endif %}
+!
+{% endfor %}
+
+ip default-gateway {{ device.json.results[0].config_context['default-gateway'] }}
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+{% for route in device.json.results[0].config_context['static-routes'] %}
+ip route {{ route.network }} {{ route.mask }} {{ route.next_hop }}
+{% endfor %}
+ip tacacs source-interface {{ device.json.results[0].config_context['tacacs-source-intf'] }}
+ip ssh version 2
+!
+ip access-list standard HomeSnmpReadAcl
+ permit {{ device.json.results[0].config_context['snmp-access'] }}
+!
+logging source-interface {{ device.json.results[0].config_context['logging-source-intf'] }}
+{% for syslog_server in device.json.results[0].config_context['syslog-servers'] %}
+logging host {{ syslog_server }} transport udp port 1514
+{% endfor %}
+!
+snmp-server community {{ device.json.results[0].config_context['snmp-ro-community'] }} RO
+snmp-server location {{ site.json.results[0]['region']['name'] }}
+tacacs server tacacsgui
+ address ipv4 {{ device.json.results[0].config_context['tacacsgui-ip'] }}
+ key {{ device.json.results[0].config_context['tacacsgui-key'] }}
+{% for tacacs in device.json.results[0].config_context['tacacs-servers'] %}
+tacacs server {{ tacacs.name }}
+ address ipv4 {{ tacacs.address }}
+ key {{ tacacs.key }}
+ single-connection
+{% endfor %}
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 30 0
+ authorization exec Console_AAA
+ logging synchronous
+ login authentication Console_AAA
+ transport preferred none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ session-timeout 30
+ exec-timeout 30 0
+ authorization commands 1 Remote_AAA
+ authorization commands 15 Remote_AAA
+ authorization exec Remote_AAA
+ accounting commands 1 Remote_AAA
+ accounting commands 15 Remote_AAA
+ accounting exec Remote_AAA
+ logging synchronous
+ login authentication Remote_AAA
+ transport preferred none
+ transport input all
+line vty 5 15
+ logging synchronous
+!
+{% for ntp_server in device.json.results[0].config_context['ntp-servers'] %}
+ntp server {{ ntp_server }}
+{% endfor %}
+!
+end

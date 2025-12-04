@@ -1,0 +1,96 @@
+#jinja2: lstrip_blocks: True
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone year
+service timestamps log datetime msec localtime show-timezone year
+service password-encryption
+service linenumber
+service compress-config
+service sequence-numbers
+!
+hostname {{ device.json.results[0]['name'] }}
+!
+boot-start-marker
+boot-end-marker
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+security authentication failure rate 5 log
+logging count
+no logging message-counter syslog
+logging userinfo
+logging buffered notifications
+!
+aaa new-model
+!
+no ip bootp server
+{% for name_server in device.json.results[0].config_context['name-servers'] %}
+ip name-server {{ name_server }}
+{% endfor %}
+!
+spanning-tree extend system-id
+!
+lldp run
+!
+{% for intf in interfaces.json.results %}
+interface {{ intf.name }}
+  {% if intf.description %}
+  description {{ intf.description | safe }}
+  {% endif %}
+  {% for ip in ip_addresses.json.results %}
+    {% if ip.assigned_object.name == intf.name %}
+  ip address {{ ip.address.split('/')[0] }} {{ ip.address | ansible.utils.ipaddr('netmask') }}
+    {% endif %}
+  {% endfor %}
+  no shutdown
+!
+{% endfor %}
+!
+snmp-server community {{ device.json.results[0].config_context['snmp-ro-community'] }} RO
+{% set latitude = site.json.results[0]['latitude'] %}
+{% set longitude = site.json.results[0]['longitude'] %}
+{% if latitude and longitude %}
+snmp-server location {{ site.json.results[0]['region']['name'] }} [{{ latitude }},{{ longitude }}]
+{% else %}
+snmp-server location {{ site.json.results[0]['region']['name'] }}
+{% endif %}
+!
+logging source-interface GigabitEthernet3/3
+{% for syslog_server in device.json.results[0].config_context['syslog-servers'] %}
+logging host {{ syslog_server }} transport udp port 1514
+{% endfor %}
+!
+{% for ntp_server in device.json.results[0].config_context['ntp-servers'] %}
+ntp server {{ ntp_server }}
+{% endfor %}
+!
+{% for tacacs in device.json.results[0].config_context['tacacs-servers'] %}
+tacacs server {{ tacacs.name }}
+  address ipv4 {{ tacacs.address }}
+  port {{ tacacs.port }}
+  key {{ tacacs.key }}
+  single-connection
+!
+{% endfor %}
+
+aaa group server tacacs+ Techit_Tac_Grp
+{% for tacacs in device.json.results[0].config_context['tacacs-servers'] %}
+  server name {{ tacacs.name }}
+{% endfor %}
+!!! Change to MGMT VLAN, use only if required !!!
+!!! ip tacacs source-interface vlan 300
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+!
+end

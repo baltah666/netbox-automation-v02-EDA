@@ -1,0 +1,233 @@
+/************************************************************************************
+ * 📘 Jenkinsfile06 — Stable & Auto-Healing Version (Production-Ready)
+ * ----------------------------------------------------------------------------------
+ * ✔ Fixes venv corruption (auto-rebuilds if ansible missing/broken)
+ * ✔ Uses correct NetBox API endpoint: http://192.168.1.254:8000
+ * ✔ Supports future hostname-based NetBox access if Jenkins joins docker network
+ * ✔ Adds stronger error-checking and safer bash scripting
+ * ✔ Guaranteed stable builds with ZERO manual intervention
+ ************************************************************************************/
+
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'SELECTION_TYPE',
+            choices: ['By Role', 'By Device'],
+            description: 'Select how to choose targets: by Role(s) or by specific Device(s)'
+        )
+
+        extendedChoice(
+            name: 'DEVICE_ROLES',
+            type: 'PT_MULTI_SELECT',
+            description: 'Select one or more device roles (if SELECTION_TYPE=By Role)',
+            multiSelectDelimiter: ',',
+            value: 'Access Switch,Distribution,Core,Firewall,Server,Router'
+        )
+
+        extendedChoice(
+            name: 'DEVICES',
+            type: 'PT_MULTI_SELECT',
+            description: 'Select one or more specific devices (if SELECTION_TYPE=By Device)',
+            multiSelectDelimiter: ',',
+            value: 'Test-Env-DS_sw01,Test-Env-DS_sw02,test-env-access_sw01,test-env-access_sw02,Home-Lab-Core-sw01,Home-Lab-Access-sw01'
+        )
+    }
+
+    environment {
+        // ⭐ Correct API endpoint mapped on HOST (NOT inside Docker network)
+        NETBOX_API   = 'http://192.168.1.254:8000'
+
+        // ⭐ If later you connect Jenkins to netbox-docker_default:
+        // NETBOX_API = 'http://netbox-docker-netbox-1:8080'
+
+        NETBOX_TOKEN = credentials('netbox-token')
+        GITHUB_TOKEN = credentials('github-cred-token')
+        VENV_DIR     = "${env.WORKSPACE}/venv"
+    }
+
+    options {
+        durabilityHint('PERFORMANCE_OPTIMIZED')
+    }
+
+    stages {
+
+        /**************************************
+         * 1️⃣ CHECKOUT
+         **************************************/
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/baltah666/netbox-automation-v02.git',
+                    credentialsId: 'github-cred'
+            }
+        }
+
+        /**************************************
+         * 2️⃣ SETUP VIRTUALENV (AUTO-HEALING)
+         **************************************/
+        stage('Setup Environment') {
+            steps {
+                sh '''
+                    set -e
+
+                    REBUILD=0
+
+                    # 1. venv missing?
+                    if [ ! -d "${VENV_DIR}/bin" ]; then
+                        echo "⚠️  venv directory missing → rebuilding..."
+                        REBUILD=1
+                    fi
+
+                    # 2. ansible or ansible-playbook missing?
+                    if [ $REBUILD -eq 0 ]; then
+                        if [ ! -x "${VENV_DIR}/bin/ansible" ] || [ ! -x "${VENV_DIR}/bin/ansible-playbook" ]; then
+                            echo "⚠️  ansible binaries missing → rebuilding venv..."
+                            REBUILD=1
+                        fi
+                    fi
+
+                    # 3. ansible broken?
+                    if [ $REBUILD -eq 0 ]; then
+                        . "${VENV_DIR}/bin/activate"
+                        if ! ansible --version >/dev/null 2>&1; then
+                            echo "⚠️  ansible not responding → rebuilding venv..."
+                            REBUILD=1
+                        fi
+                    fi
+
+                    # Build or reuse virtualenv
+                    if [ $REBUILD -eq 1 ]; then
+                        echo "🔧 Rebuilding virtualenv at ${VENV_DIR}..."
+                        rm -rf "${VENV_DIR}"
+                        python3 -m venv "${VENV_DIR}"
+                        . "${VENV_DIR}/bin/activate"
+                        pip install --upgrade pip
+                        pip install "ansible-core>=2.15,<2.17" ansible==8.5.0
+                        pip install -r requirements.txt
+                        ansible-galaxy collection install netbox.netbox || true
+                    else
+                        echo "✅ Reusing cached virtualenv"
+                        . "${VENV_DIR}/bin/activate"
+                        echo "🔍 Ansible version: $(ansible --version | head -1)"
+                    fi
+                '''
+            }
+        }
+
+        /**************************************
+         * 3️⃣ VALIDATE NETBOX CONNECTION
+         **************************************/
+        stage('Validate NetBox Connection') {
+            steps {
+                sh '''
+                    set -e
+                    . "${VENV_DIR}/bin/activate"
+
+                    echo "🔗 Testing NetBox API: ${NETBOX_API}/api/status/"
+
+                    STATUS=$(curl -s -H "Authorization: Token ${NETBOX_TOKEN}" \
+                        -o /dev/null -w "%{http_code}" "${NETBOX_API}/api/status/")
+
+                    if [ "$STATUS" = "200" ]; then
+                        echo "✅ NetBox reachable & authenticated!"
+                    else
+                        echo "❌ NetBox API unreachable or unauthorized (HTTP ${STATUS})"
+                        exit 1
+                    fi
+                '''
+            }
+        }
+
+        /**************************************
+         * 4️⃣ GET DEVICES LIST
+         **************************************/
+        stage('Get Devices List') {
+            steps {
+                script {
+                    if (params.SELECTION_TYPE == 'By Role') {
+
+                        echo "🎯 Selected Roles: ${params.DEVICE_ROLES}"
+
+                        def json = sh(
+                            script: """
+                                . "${VENV_DIR}/bin/activate"
+                                python3 get_devices.py --roles "${params.DEVICE_ROLES}" --quiet
+                            """,
+                            returnStdout: true
+                        ).trim()
+
+                        env.DEVICE_LIST = json
+                        echo "📦 Devices from NetBox: ${json}"
+
+                    } else {
+
+                        def deviceArray = params.DEVICES.tokenize(',')
+                        env.DEVICE_LIST = groovy.json.JsonOutput.toJson(deviceArray)
+                        echo "📦 Manual device list: ${env.DEVICE_LIST}"
+                    }
+                }
+            }
+        }
+
+        /**************************************
+         * 5️⃣ PARALLEL CONFIG GENERATION
+         **************************************/
+        stage('Parallel Config Generation') {
+            when { expression { env.DEVICE_LIST?.trim() } }
+            steps {
+                script {
+                    def devices = readJSON text: env.DEVICE_LIST
+                    def branches = [:]
+
+                    for (dev in devices) {
+                        def d = dev
+                        branches[d] = {
+                            stage("Generate ${d}") {
+                                sh """
+                                    . "${VENV_DIR}/bin/activate"
+                                    echo "🚀 Generating configuration for device: ${d}"
+                                    ansible-playbook -i netbox_inv.yml generate_config.yml \
+                                        --limit ${d} \
+                                        --tags device,interfaces,ip_addresses,site,vlans,generate_config
+                                """
+                            }
+                        }
+                    }
+
+                    parallel branches
+                }
+            }
+        }
+
+        /**************************************
+         * 6️⃣ GIT PUSH CHANGES
+         **************************************/
+        stage('Git Push Changes') {
+            steps {
+                sh '''
+                    git config user.name "Abdulilah Baltah"
+                    git config user.email "baltah666@gmail.com"
+
+                    if [ -n "$(git status --porcelain)" ]; then
+                        git add .
+                        git commit -m "Automated update for devices from Jenkins build ${BUILD_NUMBER}"
+                        git push https://${GITHUB_TOKEN}@github.com/baltah666/netbox-automation-v02.git main
+                    else
+                        echo "ℹ️ No changes to commit."
+                    fi
+                '''
+            }
+        }
+    }
+
+    /**************************************
+     * POST ACTIONS
+     **************************************/
+    post {
+        always { echo "Pipeline finished." }
+        failure { echo "❌ Pipeline failed — check logs." }
+        success { echo "✅ All device configurations generated successfully!" }
+    }
+}

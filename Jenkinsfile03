@@ -1,0 +1,151 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(
+            name: 'DEVICE_ROLE',
+            defaultValue: 'Access Switch',
+            description: 'NetBox device role to target (e.g. Access Switch, Distribution, Core, Firewall, etc.)'
+        )
+    }
+
+    environment {
+        NETBOX_API   = 'http://172.18.0.6:8080'
+        NETBOX_TOKEN = credentials('netbox-token')
+        GITHUB_TOKEN = credentials('github-cred-token')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/baltah666/netbox-automation-v02.git',
+                    credentialsId: 'github-cred'
+            }
+        }
+
+        stage('Setup Environment') {
+            steps {
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install "ansible-core>=2.15,<2.17" ansible==8.5.0
+                    pip install -r requirements.txt
+                    ansible-galaxy collection install netbox.netbox || true
+                '''
+            }
+        }
+
+        stage('Validate NetBox Connection') {
+            steps {
+                withEnv(["NETBOX_API=" + env.NETBOX_API, "NETBOX_TOKEN=" + env.NETBOX_TOKEN]) {
+                    sh '''
+                        . venv/bin/activate
+                        echo "🔗 Testing NetBox API connectivity..."
+                        echo "🔑 Token length: ${#NETBOX_TOKEN}"
+                        echo "🌍 Endpoint: ${NETBOX_API}"
+
+                        STATUS_CODE=$(curl -s -H "Authorization: Token ${NETBOX_TOKEN}" \
+                            -o /dev/null -w "%{http_code}" "${NETBOX_API}/api/status/")
+                        
+                        if [ "$STATUS_CODE" = "200" ]; then
+                            echo "✅ NetBox API authentication successful!"
+                        else
+                            echo "❌ Unable to authenticate with NetBox API (HTTP $STATUS_CODE)"
+                            exit 1
+                        fi
+                    '''
+                }
+            }
+        }
+
+        stage('Get Devices List') {
+            steps {
+                withEnv(["NETBOX_API=" + env.NETBOX_API, "NETBOX_TOKEN=" + env.NETBOX_TOKEN]) {
+                    script {
+                        echo "🔍 Fetching device list from NetBox for role: ${params.DEVICE_ROLE}"
+                        def devicesJSON = sh(
+                            script: """
+                                . venv/bin/activate
+                                python3 get_devices.py --role "${params.DEVICE_ROLE}" --quiet
+                            """,
+                            returnStdout: true
+                        ).trim()
+
+                        def devices = readJSON text: devicesJSON
+                        echo "✅ Devices fetched: ${devices}"
+                        env.DEVICE_LIST = devicesJSON
+                    }
+                }
+            }
+        }
+
+        stage('Parallel Config Generation') {
+            when {
+                expression { return env.DEVICE_LIST?.trim() }
+            }
+            steps {
+                script {
+                    def devices = readJSON text: env.DEVICE_LIST
+                    def branches = [:]
+
+                    for (dev in devices) {
+                        def deviceName = dev
+                        branches[deviceName] = {
+                            stage("${deviceName}") {
+                                withEnv([
+                                    "NETBOX_API=" + env.NETBOX_API,
+                                    "NETBOX_TOKEN=" + env.NETBOX_TOKEN,
+                                    "ANSIBLE_NETBOX_URL=" + env.NETBOX_API,
+                                    "ANSIBLE_NETBOX_TOKEN=" + env.NETBOX_TOKEN
+                                ]) {
+                                    sh """
+                                        . venv/bin/activate
+                                        echo "🚀 Generating configuration for device: ${deviceName}"
+                                        ansible-playbook -i netbox_inv.yml generate_config.yml \
+                                            --limit ${deviceName} --tags device,interfaces,ip_addresses,site,vlans,generate_config
+                                    """
+                                }
+                            }
+                        }
+                    }
+
+                    parallel branches
+                }
+            }
+        }
+
+        stage('Git Push Changes') {
+            steps {
+                withEnv(["GITHUB_TOKEN=" + env.GITHUB_TOKEN]) {
+                    sh '''
+                        git config user.name "Abdulilah Baltah"
+                        git config user.email "baltah666@gmail.com"
+
+                        if [ -n "$(git status --porcelain)" ]; then
+                            git add .
+                            git commit -m "Automated update for ${DEVICE_ROLE} devices from Jenkins build ${BUILD_NUMBER}"
+                            git push https://${GITHUB_TOKEN}@github.com/baltah666/netbox-automation-v02.git main
+                        else
+                            echo "No changes to commit."
+                        fi
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline finished."
+        }
+        failure {
+            echo "❌ Pipeline failed — check logs."
+        }
+        success {
+            echo "✅ All device configurations generated successfully!"
+        }
+    }
+}

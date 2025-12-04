@@ -1,0 +1,11 @@
+---
+- name: Push generated configuration to Cisco IOS devices
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Load device-specific config file
+      ios_config:
+        src: "configs/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+        backup: yes

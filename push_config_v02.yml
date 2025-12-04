@@ -1,0 +1,23 @@
+---
+- name: Push generated configuration to Cisco IOS devices
+  hosts: all
+  gather_facts: no
+  vars:
+    config_dir: "/var/jenkins_home/workspace/Generate-config-v02/configs"
+
+  tasks:
+    - name: Check if config file exists
+      stat:
+        path: "{{ config_dir }}/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+      register: config_file
+
+    - name: Load device-specific config file
+      ios_config:
+        src: "{{ config_dir }}/{{ inventory_hostname }}/{{ inventory_hostname }}.conf"
+      when: config_file.stat.exists
+
+    - name: Warn if config file missing
+      debug:
+        msg: "⚠️ No config file found for {{ inventory_hostname }}, skipping..."
+      when: not config_file.stat.exists
+

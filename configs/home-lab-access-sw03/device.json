@@ -1,0 +1,204 @@
+{
+    "allow": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS",
+    "api_version": "4.4",
+    "changed": false,
+    "connection": "close",
+    "content": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":51,\"url\":\"http://192.168.1.254:8000/api/dcim/devices/51/\",\"display_url\":\"http://192.168.1.254:8000/dcim/devices/51/\",\"display\":\"home-lab-access-sw03\",\"name\":\"home-lab-access-sw03\",\"device_type\":{\"id\":15,\"url\":\"http://192.168.1.254:8000/api/dcim/device-types/15/\",\"display\":\"Catalyst 2960-8PC-L-SFP\",\"manufacturer\":{\"id\":6,\"url\":\"http://192.168.1.254:8000/api/dcim/manufacturers/6/\",\"display\":\"Cisco\",\"name\":\"Cisco\",\"slug\":\"cisco\",\"description\":\"\"},\"model\":\"Catalyst 2960-8PC-L-SFP\",\"slug\":\"cisco-ws-c2960c-8pc-l-SFP\",\"description\":\"\"},\"role\":{\"id\":2,\"url\":\"http://192.168.1.254:8000/api/dcim/device-roles/2/\",\"display\":\"Access Switch\",\"name\":\"Access Switch\",\"slug\":\"access-switch\",\"description\":\"\",\"device_count\":0,\"virtualmachine_count\":0,\"_depth\":0},\"tenant\":{\"id\":7,\"url\":\"http://192.168.1.254:8000/api/tenancy/tenants/7/\",\"display\":\"Home-lab\",\"name\":\"Home-lab\",\"slug\":\"home-lab\",\"description\":\"\"},\"platform\":{\"id\":1,\"url\":\"http://192.168.1.254:8000/api/dcim/platforms/1/\",\"display\":\"Cisco IOS\",\"name\":\"Cisco IOS\",\"slug\":\"cisco-ios\",\"description\":\"\",\"device_count\":0,\"virtualmachine_count\":0,\"_depth\":0},\"serial\":\"FOC1646Y1RZ\",\"asset_tag\":null,\"site\":{\"id\":13,\"url\":\"http://192.168.1.254:8000/api/dcim/sites/13/\",\"display\":\"Home-Lab\",\"name\":\"Home-Lab\",\"slug\":\"home-lab\",\"description\":\"\"},\"location\":null,\"rack\":{\"id\":21,\"url\":\"http://192.168.1.254:8000/api/dcim/racks/21/\",\"display\":\"Home-Lab-Rack01\",\"name\":\"Home-Lab-Rack01\",\"description\":\"\"},\"position\":28.0,\"face\":{\"value\":\"front\",\"label\":\"Front\"},\"latitude\":null,\"longitude\":null,\"parent_device\":null,\"status\":{\"value\":\"active\",\"label\":\"Active\"},\"airflow\":null,\"primary_ip\":null,\"primary_ip4\":null,\"primary_ip6\":null,\"oob_ip\":null,\"cluster\":null,\"virtual_chassis\":null,\"vc_position\":null,\"vc_priority\":null,\"description\":\"\",\"comments\":\"\",\"config_template\":null,\"config_context\":{\"domain-name\":\"tesl.lab.local\",\"ntp-servers\":[\"192.168.4.10\",\"192.168.4.40\",\"192.168.4.11\"],\"snmp-access\":\"192.168.122.200\",\"name-servers\":[\"8.8.8.8\",\"8.8.4.4\"],\"tacacsgui-ip\":\"192.168.122.102\",\"enable-secret\":\"cisco\",\"static-routes\":[{\"mask\":\"255.255.255.0\",\"network\":\"192.168.1.0\",\"next_hop\":\"192.168.122.5\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.40.0\",\"next_hop\":\"192.168.122.41\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.41.0\",\"next_hop\":\"192.168.122.41\"},{\"mask\":\"255.255.255.0\",\"network\":\"192.168.42.0\",\"next_hop\":\"192.168.122.41\"}],\"tacacsgui-key\":\"02050D4808095E731F\",\"admin-password\":\"cisco\",\"syslog-servers\":[\"192.168.4.12\",\"192.168.4.13\"],\"tacacs-servers\":[{\"key\":\"yyyyyyyy\",\"name\":\"snisepx0393\",\"port\":49,\"address\":\"10.186.31.22\"},{\"key\":\"xxxxxxxxxx\",\"name\":\"svisepx1376\",\"port\":49,\"address\":\"193.111.44.157\"}],\"default-gateway\":\"192.168.30.1\",\"snmp-ro-community\":\"R34d0nlY\",\"tacacs-source-intf\":\"GigabitEthernet3/3\",\"logging-source-intf\":\"GigabitEthernet3/3\"},\"local_context_data\":null,\"tags\":[],\"custom_fields\":{},\"created\":\"2025-11-21T11:24:17.775698Z\",\"last_updated\":\"2025-11-21T11:57:55.410585Z\",\"console_port_count\":2,\"console_server_port_count\":0,\"power_port_count\":1,\"power_outlet_count\":0,\"interface_count\":10,\"front_port_count\":0,\"rear_port_count\":0,\"device_bay_count\":0,\"module_bay_count\":0,\"inventory_item_count\":0}]}",
+    "content_language": "en",
+    "content_length": "3240",
+    "content_type": "application/json",
+    "cookies": {},
+    "cookies_string": "",
+    "cross_origin_opener_policy": "same-origin",
+    "date": "Wed, 03 Dec 2025 13:45:34 GMT",
+    "elapsed": 0,
+    "failed": false,
+    "json": {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "airflow": null,
+                "asset_tag": null,
+                "cluster": null,
+                "comments": "",
+                "config_context": {
+                    "admin-password": "cisco",
+                    "default-gateway": "192.168.30.1",
+                    "domain-name": "tesl.lab.local",
+                    "enable-secret": "cisco",
+                    "logging-source-intf": "GigabitEthernet3/3",
+                    "name-servers": [
+                        "8.8.8.8",
+                        "8.8.4.4"
+                    ],
+                    "ntp-servers": [
+                        "192.168.4.10",
+                        "192.168.4.40",
+                        "192.168.4.11"
+                    ],
+                    "snmp-access": "192.168.122.200",
+                    "snmp-ro-community": "R34d0nlY",
+                    "static-routes": [
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.1.0",
+                            "next_hop": "192.168.122.5"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.40.0",
+                            "next_hop": "192.168.122.41"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.41.0",
+                            "next_hop": "192.168.122.41"
+                        },
+                        {
+                            "mask": "255.255.255.0",
+                            "network": "192.168.42.0",
+                            "next_hop": "192.168.122.41"
+                        }
+                    ],
+                    "syslog-servers": [
+                        "192.168.4.12",
+                        "192.168.4.13"
+                    ],
+                    "tacacs-servers": [
+                        {
+                            "address": "10.186.31.22",
+                            "key": "yyyyyyyy",
+                            "name": "snisepx0393",
+                            "port": 49
+                        },
+                        {
+                            "address": "193.111.44.157",
+                            "key": "xxxxxxxxxx",
+                            "name": "svisepx1376",
+                            "port": 49
+                        }
+                    ],
+                    "tacacs-source-intf": "GigabitEthernet3/3",
+                    "tacacsgui-ip": "192.168.122.102",
+                    "tacacsgui-key": "02050D4808095E731F"
+                },
+                "config_template": null,
+                "console_port_count": 2,
+                "console_server_port_count": 0,
+                "created": "2025-11-21T11:24:17.775698Z",
+                "custom_fields": {},
+                "description": "",
+                "device_bay_count": 0,
+                "device_type": {
+                    "description": "",
+                    "display": "Catalyst 2960-8PC-L-SFP",
+                    "id": 15,
+                    "manufacturer": {
+                        "description": "",
+                        "display": "Cisco",
+                        "id": 6,
+                        "name": "Cisco",
+                        "slug": "cisco",
+                        "url": "http://192.168.1.254:8000/api/dcim/manufacturers/6/"
+                    },
+                    "model": "Catalyst 2960-8PC-L-SFP",
+                    "slug": "cisco-ws-c2960c-8pc-l-SFP",
+                    "url": "http://192.168.1.254:8000/api/dcim/device-types/15/"
+                },
+                "display": "home-lab-access-sw03",
+                "display_url": "http://192.168.1.254:8000/dcim/devices/51/",
+                "face": {
+                    "label": "Front",
+                    "value": "front"
+                },
+                "front_port_count": 0,
+                "id": 51,
+                "interface_count": 10,
+                "inventory_item_count": 0,
+                "last_updated": "2025-11-21T11:57:55.410585Z",
+                "latitude": null,
+                "local_context_data": null,
+                "location": null,
+                "longitude": null,
+                "module_bay_count": 0,
+                "name": "home-lab-access-sw03",
+                "oob_ip": null,
+                "parent_device": null,
+                "platform": {
+                    "_depth": 0,
+                    "description": "",
+                    "device_count": 0,
+                    "display": "Cisco IOS",
+                    "id": 1,
+                    "name": "Cisco IOS",
+                    "slug": "cisco-ios",
+                    "url": "http://192.168.1.254:8000/api/dcim/platforms/1/",
+                    "virtualmachine_count": 0
+                },
+                "position": 28.0,
+                "power_outlet_count": 0,
+                "power_port_count": 1,
+                "primary_ip": null,
+                "primary_ip4": null,
+                "primary_ip6": null,
+                "rack": {
+                    "description": "",
+                    "display": "Home-Lab-Rack01",
+                    "id": 21,
+                    "name": "Home-Lab-Rack01",
+                    "url": "http://192.168.1.254:8000/api/dcim/racks/21/"
+                },
+                "rear_port_count": 0,
+                "role": {
+                    "_depth": 0,
+                    "description": "",
+                    "device_count": 0,
+                    "display": "Access Switch",
+                    "id": 2,
+                    "name": "Access Switch",
+                    "slug": "access-switch",
+                    "url": "http://192.168.1.254:8000/api/dcim/device-roles/2/",
+                    "virtualmachine_count": 0
+                },
+                "serial": "FOC1646Y1RZ",
+                "site": {
+                    "description": "",
+                    "display": "Home-Lab",
+                    "id": 13,
+                    "name": "Home-Lab",
+                    "slug": "home-lab",
+                    "url": "http://192.168.1.254:8000/api/dcim/sites/13/"
+                },
+                "status": {
+                    "label": "Active",
+                    "value": "active"
+                },
+                "tags": [],
+                "tenant": {
+                    "description": "",
+                    "display": "Home-lab",
+                    "id": 7,
+                    "name": "Home-lab",
+                    "slug": "home-lab",
+                    "url": "http://192.168.1.254:8000/api/tenancy/tenants/7/"
+                },
+                "url": "http://192.168.1.254:8000/api/dcim/devices/51/",
+                "vc_position": null,
+                "vc_priority": null,
+                "virtual_chassis": null
+            }
+        ]
+    },
+    "msg": "OK (3240 bytes)",
+    "redirected": false,
+    "referrer_policy": "same-origin",
+    "server": "Unit/1.34.2",
+    "status": 200,
+    "url": "http://192.168.1.254:8000/api/dcim/devices/?name=home-lab-access-sw03",
+    "vary": "HX-Request, Accept-Language, Cookie, origin",
+    "x_content_type_options": "nosniff",
+    "x_frame_options": "SAMEORIGIN",
+    "x_request_id": "644bb676-4722-439d-8388-cdda0f0b18c7"
+}
