@@ -1,0 +1,22 @@
+services:
+  eda-listener:
+    image: quay.io/ansible/ansible-rulebook:latest
+    container_name: eda-listener
+    command:
+      - ansible-rulebook
+      - -r
+      - /project/eda/rulebooks/netbox-rulebook.yml
+      - -i
+      - /project/eda/inventories/netbox_inventory.yml
+      - --verbose
+    networks:
+      - netbox-docker_default
+    volumes:
+      - /home/baltah/netbox-automation-v02-EDA:/project
+    ports:
+      - "5001:5001"
+    restart: always
+
+networks:
+  netbox-docker_default:
+    external: true

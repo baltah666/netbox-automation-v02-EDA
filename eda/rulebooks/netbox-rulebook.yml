@@ -1,0 +1,26 @@
+---
+- name: NetBox Event Listener
+  hosts: all
+
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5001
+
+  rules:
+
+    # 1) Debug rule — prints all received events
+    - name: Print all events
+      condition: event.payload is defined
+      action:
+        debug:
+          msg: "Received event: {{ event }}"
+
+    # 2) Real automation rule (disabled for now)
+    # - name: Device updated
+    #   condition: event.payload.model == "device"
+    #   action:
+    #     run_playbook:
+    #       name: ../playbooks/generate_config_eda.yml
+    #       extra_vars:
+    #         netbox_payload: "{{ event }}"
